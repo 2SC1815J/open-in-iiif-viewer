@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Open IIIF Manifest Link In Favorite Viewer",
+  "version": "0.1.3",
+  "description": "Open IIIF manifest link in your favorite IIIF viewer (customizable).",
+  "author": "2SC1815J",
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "browser-polyfill.min.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*",
+        "file:///*"
+      ],
+      "js": [
+        "browser-polyfill.min.js",
+        "content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon.svg"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
+}
