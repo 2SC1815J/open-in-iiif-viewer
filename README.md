@@ -15,10 +15,10 @@
 拡張機能の設定画面では、お好みのIIIFビューワに応じて、例えば次のように設定します。
 - IIIF Curation Viewerを用いる場合の例（デフォルト）
     - `http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=`
+- Miradorを用いる場合の例（人文情報学研究所 永崎研宣氏による設置）
+    - `http://candra.dhii.jp/nagasaki/mirador_if.php?manifest=`
 - Universal Viewerを用いる場合の例
     - `http://universalviewer.io/uv.html?manifest=`
-- Miradorを用いる場合の例
-    - Mirador demo (`http://projectmirador.org/demo/`)はGETパラメータでのManifest指定はできない？
 - ビューワで開かずにIIIF Manifest自体を表示する例
     - 設定欄を空にしてください
 
