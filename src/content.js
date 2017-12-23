@@ -27,13 +27,16 @@
                 }
             }
         }
-        if (!manifestUrl) {
-            var re = /(?:&|\?)manifest=(https?:\/\/[^&]+)(&|$)/;
+        if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
+            var re = /(?:&|\?)manifest=((https?:)?\/\/[^&]+)(?:&|$)/;
             var match;
             for (i = 0; i < linksLen; i++) {
                 match = links[i].href.match(re);
                 if (match) {
                     manifestUrl = match[1];
+                    if (!match[2]) {
+                        manifestUrl = location.protocol + manifestUrl;
+                    }
                     break;
                 }
             }

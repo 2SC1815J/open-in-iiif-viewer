@@ -4,9 +4,12 @@
 
 ## インストール方法
 
-- Firefoxでは、以下の拡張機能ファイルをダウンロードし、Firefoxにドラッグ＆ドロップすると、この拡張機能をインストールできます。
-    - [open_iiif_manifest_link_in_favorite_viewer.xpi](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/raw/master/open_iiif_manifest_link_in_favorite_viewer.xpi)
-- Google Chromeでは、デベロッパーモードの「パッケージ化されていない拡張機能を読み込む」機能を利用して、この拡張機能をインストールできます。
+- Firefoxでは、以下のインストールリンクをクリックすると、この拡張機能をインストールできます。
+    - [インストール / install](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/docs/install.html)
+    - 以下の拡張機能ファイルをダウンロードしてインストールすることもできます。
+        - [open_iiif_manifest_link_in_favorite_viewer.xpi](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/raw/master/open_iiif_manifest_link_in_favorite_viewer.xpi)
+- Google Chromeでは、以下のリンクをクリックすると、この拡張機能をインストールできます。
+    - [open_iiif_manifest_link_in_favorite_viewer.crx](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/raw/master/open_iiif_manifest_link_in_favorite_viewer.crx)
 
 ## 使い方
 

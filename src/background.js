@@ -7,6 +7,8 @@
 (function() {
     'use strict';
 
+    let timeoutHandle = null;
+    
     // ref.
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/sendMessage
     // https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses
@@ -16,7 +18,7 @@
         browser.tabs.query({
             currentWindow: true,
             active: true
-        }).then(function(tabs) {
+        }).then(tabs => {
             for (let tab of tabs) {
                 browser.tabs.sendMessage(
                     tab.id,
@@ -33,11 +35,11 @@
     }
     
     function openNewTab() {
-        sendMessageToTabs(function(url) {
+        sendMessageToTabs(url => {
             if (url) {
                 browser.storage.sync.get({
                     openInBaseUrl: 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest='
-                }).then((options) => {
+                }).then(options => {
                     var viewerUrl = options.openInBaseUrl + url;
                     browser.tabs.create({url: viewerUrl});
                 });
@@ -53,8 +55,9 @@
         browser.browserAction.setIcon({path: 'icon_off.svg'});
     }
     function updateBrowserActionButton() {
-        sendMessageToTabs(function(url) {
+        sendMessageToTabs(url => {
             if (url) {
+                stopTimer();
                 browser.browserAction.setTitle({title: url});
                 browser.browserAction.setIcon({path: 'icon.svg'});
             } else {
@@ -62,6 +65,23 @@
             }
         });
     }
-    browser.tabs.onUpdated.addListener(updateBrowserActionButton);
+    function stopTimer() {
+        if (timeoutHandle !== null) {
+            clearTimeout(timeoutHandle);
+            timeoutHandle = null;
+        }
+    }
+    browser.tabs.onUpdated.addListener((tabId, changeInfo) => {
+        if (changeInfo && changeInfo.status === 'complete') {
+            //check twice
+            const delay = 1000; //ms
+            const delay2 = 5000; //ms
+            stopTimer();
+            timeoutHandle = setTimeout(() => {
+                updateBrowserActionButton();
+                timeoutHandle = setTimeout(updateBrowserActionButton, delay2);
+            }, delay);
+        }
+    });
     browser.tabs.onActivated.addListener(updateBrowserActionButton);
 })();
