@@ -8,8 +8,9 @@
     - [インストール / install](https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html)
     - 以下の拡張機能ファイルをダウンロードしてインストールすることもできます。
         - [open_iiif_manifest_link_in_favorite_viewer.xpi](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/raw/master/open_iiif_manifest_link_in_favorite_viewer.xpi)
-- Google Chromeでは、以下の拡張機能ファイルをダウンロードし、Chromeの拡張機能ページ(chrome://extensions/)にドラッグ＆ドロップすると、この拡張機能をインストールできます。
-    - [open_iiif_manifest_link_in_favorite_viewer.crx](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/raw/master/open_iiif_manifest_link_in_favorite_viewer.crx)
+- Google Chromeでは、Chromeウェブストア（無料）から、この拡張機能をインストールできます
+。
+    - [Open IIIF Manifest Link In Favorite Viewer (chrome web store)](https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl)
 
 ## 使い方
 
