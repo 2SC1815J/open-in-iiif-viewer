@@ -41,6 +41,16 @@
                 }
             }
             if (!manifestUrl) {
+                //embedded Universal Viewer
+                var elements = document.getElementsByClassName('uv');
+                for (i = 0; i < elements.length; i++) {
+                    if (elements[i].dataset.uri) {
+                        manifestUrl = elements[i].dataset.uri;
+                        break;
+                    }
+                }
+            }
+            if (!manifestUrl) {
                 match = location.search.match(re);
                 if (match) {
                     manifestUrl = match[1];
