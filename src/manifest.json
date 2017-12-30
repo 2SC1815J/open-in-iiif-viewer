@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Open IIIF Manifest Link In Favorite Viewer",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.",
   "author": "2SC1815J",
   "applications": {
@@ -15,6 +15,7 @@
   },
   "permissions": [
     "activeTab",
+    "contextMenus",
     "storage"
   ],
   "background": {

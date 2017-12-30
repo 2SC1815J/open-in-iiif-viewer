@@ -15,6 +15,10 @@
 
 ![screenshot_toolbar](https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7)
 
+また、IIIF Manifestへのリンクを右クリックして表示されるメニューから、IIIFビューワで開くこともできます。一つのページに複数のIIIF Manifestへのリンクが含まれている場合に便利です。
+
+![screenshot_contextmenu](https://lh3.googleusercontent.com/naIzec7cR6iWnClg435Efj5QnEXKhC8ZTKokMdDFi0vDOtErEaizrcPPjuf6pkvzHQKmucz3)
+
 ## 設定項目 / Options
 
 拡張機能の設定画面では、お好みのIIIFビューワに応じて、例えば次のように設定します。

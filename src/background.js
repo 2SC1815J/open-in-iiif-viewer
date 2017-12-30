@@ -34,17 +34,19 @@
         browserActionButtonOff();
     }
     
+    function openInViewer(url) {
+        if (url) {
+            browser.storage.sync.get({
+                openInBaseUrl: 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest='
+            }).then(options => {
+                var viewerUrl = options.openInBaseUrl + url;
+                browser.tabs.create({url: viewerUrl});
+            });
+        }
+    }
+
     function openNewTab() {
-        sendMessageToTabs(url => {
-            if (url) {
-                browser.storage.sync.get({
-                    openInBaseUrl: 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest='
-                }).then(options => {
-                    var viewerUrl = options.openInBaseUrl + url;
-                    browser.tabs.create({url: viewerUrl});
-                });
-            }
-        });
+        sendMessageToTabs(openInViewer);
     }
     browser.browserAction.onClicked.addListener(openNewTab);
 
@@ -84,4 +86,31 @@
         }
     });
     browser.tabs.onActivated.addListener(updateBrowserActionButton);
+
+    browser.contextMenus.create({
+        id: 'open-link-in-iiif-viewer',
+        title: 'Open link in IIIF viewer',
+        contexts: ['link'],
+        targetUrlPatterns: ['*://*/*/manifest.json', '*://*/*/manifest', '*://*/*?manifest=*', '*://*/*&manifest=*']
+    });
+    browser.contextMenus.onClicked.addListener(info => {
+        if (info.menuItemId === 'open-link-in-iiif-viewer') {
+            if (info.linkUrl) {
+                var manifestUrl = info.linkUrl;
+                if (info.linkUrl.indexOf('?') !== -1) {
+                    var re = /(?:&|\?)manifest=((https?:)?\/\/[^&]+)(?:&|$)/;
+                    var match = info.linkUrl.match(re);
+                    if (match) {
+                        manifestUrl = match[1];
+                        if (!match[2]) {
+                            manifestUrl = 'http://' + manifestUrl;
+                        }
+                    }
+                }
+                if (manifestUrl) {
+                    openInViewer(manifestUrl);
+                }
+            }
+        }
+    });
 })();
