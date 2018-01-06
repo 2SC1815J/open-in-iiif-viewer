@@ -1,38 +1,42 @@
 # Open IIIF Manifest Link In Favorite Viewer
 
-閲覧中のページに含まれるIIIF Manifestへのリンクをユーザ指定のIIIFビューワで開くブラウザ拡張機能(WebExtension)
+A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.
 
-## インストール方法 / Install
+## Install
 
-- Firefoxでは、以下のインストールリンクをクリックすると、この拡張機能をインストールできます。
-    - [インストール / install](https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html) (signed by mozilla)
-- Google Chromeでは、Chromeウェブストア（無料）から、この拡張機能をインストールできます。
+- Firefox
+    - [Install](https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html) (signed by Mozilla)
+- Google Chrome
     - [Open IIIF Manifest Link In Favorite Viewer (chrome web store)](https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl)
 
-## 使い方 / Usage
+## Usage
 
-閲覧中のページにIIIF Manifestへのリンクが含まれているとき、ツールバーの拡張機能ボタンを押下すると、拡張機能の設定画面で指定したIIIFビューワを用いて資料を閲覧できます。
+When the web page you are browsing contains a link to the IIIF manifest, by clicking the toolbar button of this extension, you can open the link in the IIIF viewer specified on the options page.
 
 ![screenshot_toolbar](https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7)
 
-また、IIIF Manifestへのリンクを右クリックして表示されるメニューから、IIIFビューワで開くこともできます。一つのページに複数のIIIF Manifestへのリンクが含まれている場合に便利です。
+By right-clicking on a link to the IIIF manifest, a context menu item “Open link in IIIF viewer” appears, which allows you to open the link in your preferred IIIF viewer.
 
 ![screenshot_contextmenu](https://lh3.googleusercontent.com/naIzec7cR6iWnClg435Efj5QnEXKhC8ZTKokMdDFi0vDOtErEaizrcPPjuf6pkvzHQKmucz3)
 
-## 設定項目 / Options
+## Options
 
-拡張機能の設定画面では、お好みのIIIFビューワに応じて、例えば次のように設定します。
-- IIIF Curation Viewerを用いる場合の例（デフォルト）
+On the options page, set the URL field according to the IIIF viewer you would like to use mainly.
+
+For example:
+- Open in IIIF Curation Viewer (default)
     - `http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=`
-- Miradorを用いる場合の例（人文情報学研究所 永崎研宣氏による設置）
+- Open in Mirador (thanks to Kiyonori Nagasaki)
     - `http://candra.dhii.jp/nagasaki/mirador_if.php?manifest=`
-- Universal Viewerを用いる場合の例
+- Open in Universal Viewer
     - `http://universalviewer.io/uv.html?manifest=`
-- ビューワで開かずにIIIF Manifest自体を表示する例
-    - 設定欄を空にしてください
+- Open as JSON
+    - Leave the URL setting field blank.
 
 ![screenshot_options](https://lh3.googleusercontent.com/SMlomYG8uHgmgRe-9d9r_21tLBk7mcrhMHHlVxI9nhCcjMqOXaB5d32rKejBv-jAWp9Ekp53Epc)
 
-## 注意点
+## Notes
 
-IIIF Manifestへのリンクを認識できないサイトや誤認識するサイトもあります。
+On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.
+
+This uncertainty is improved if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1).
