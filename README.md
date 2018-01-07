@@ -11,7 +11,7 @@ A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF view
 
 ## Usage
 
-When the web page you are browsing contains a link to the IIIF manifest, by clicking the toolbar button of this extension, you can open the link in the IIIF viewer specified on the options page.
+When the web page you are browsing contains a link to a IIIF manifest, by clicking on the toolbar button of this extension, you can open the link in the IIIF viewer specified on the options page.
 
 ![screenshot_toolbar](https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7)
 
@@ -21,7 +21,7 @@ By right-clicking on a link to the IIIF manifest, a context menu item “Open li
 
 ## Options
 
-On the options page, set the URL field according to the IIIF viewer you would like to use mainly.
+On the options page, set the URL field depending on the IIIF viewer you would like to use mainly.
 
 For example:
 - Open in IIIF Curation Viewer (default)
@@ -39,4 +39,4 @@ For example:
 
 On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.
 
-This uncertainty is improved if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1).
+This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1).

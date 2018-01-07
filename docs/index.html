@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="4cr3LtvKJxBTwIC9fCq2lxVzO1TsH1m3VuTHkg514Oc" />
+  <title>Open IIIF Manifest Link In Favorite Viewer</title>
+  <link rel="stylesheet" href="github-markdown.css" />
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico" />
+  <style>
+    body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 30px 45px; }
+  </style>
+</head>
+<body>
+  <article class="markdown-body">
+    <h1>Open IIIF Manifest Link In Favorite Viewer</h1>
+    <p>A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.</p>
+    <h2>Install</h2>
+    <p>v0.1.6 (2017-12-31: For details, see the <a href="https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer">repo</a>.)</p>
+    <ul>
+      <li>Firefox
+        <ul>
+          <li>
+            <a href="https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html" rel="nofollow">Install</a> (signed by Mozilla)
+          </li>
+        </ul>
+      </li>
+      <li>Google Chrome
+        <ul>
+          <li>
+            <a href="https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl" rel="nofollow">Open IIIF Manifest Link In Favorite Viewer (chrome web store)</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Usage</h2>
+    <p>When the web page you are browsing contains a link to a IIIF manifest, by clicking on the toolbar button of this extension, you can open the link in the IIIF viewer specified on the options page.</p>
+    <p><img src="https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7" alt="screenshot_toolbar" style="max-width:100%;" /></p>
+    <p>By right-clicking on a link to the IIIF manifest, a context menu item “Open link in IIIF viewer” appears, which allows you to open the link in your preferred IIIF viewer.</p>
+    <p><img src="https://lh3.googleusercontent.com/naIzec7cR6iWnClg435Efj5QnEXKhC8ZTKokMdDFi0vDOtErEaizrcPPjuf6pkvzHQKmucz3" alt="screenshot_contextmenu" style="max-width:100%;" /></p>
+    <h2>Options</h2>
+    <p>On the options page, set the URL field depending on the IIIF viewer you would like to use mainly.</p>
+    <p>For example:</p>
+    <ul>
+      <li>Open in IIIF Curation Viewer (default)
+        <ul>
+          <li><code>http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open in Mirador (thanks to Kiyonori Nagasaki)
+        <ul>
+          <li><code>http://candra.dhii.jp/nagasaki/mirador_if.php?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open in Universal Viewer
+        <ul>
+          <li><code>http://universalviewer.io/uv.html?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open as JSON
+        <ul>
+          <li>Leave the URL setting field blank.</li>
+        </ul>
+      </li>
+    </ul>
+    <p><img src="https://lh3.googleusercontent.com/SMlomYG8uHgmgRe-9d9r_21tLBk7mcrhMHHlVxI9nhCcjMqOXaB5d32rKejBv-jAWp9Ekp53Epc" alt="screenshot_options" style="max-width:100%;" /></p>
+    <h2>Notes</h2>
+    <p>On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.</p>
+    <p>This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a <a href="https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1">proposal</a>.</p>
+    <h2>Author</h2>
+    <p><a href="https://twitter.com/2SC1815J">@2SC1815J</a></p>
+  </article>
+</body>
+</html>
