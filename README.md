@@ -1,4 +1,4 @@
-# Open IIIF Manifest Link In Favorite Viewer
+# Open IIIF Manifest Link in Favorite Viewer
 
 A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.
 
@@ -41,9 +41,7 @@ On some web pages, the extension cannot recognize links to IIIF manifests or may
 
 This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1).
 
-## Support Status
-
-The list of IIIF websites that the extension works or not on is as follows. (as of v0.1.6)
+The list of IIIF websites that the extension works or not on is as follows.
 
 |Website|Works?|Example|
 |---|---|---|
@@ -63,7 +61,7 @@ The list of IIIF websites that the extension works or not on is as follows. (as 
 |World Digital Library|Yes|[test](https://www.wdl.org/en/item/19477/)|
 |Yale Center for British Art|Yes|[test](http://collections.britishart.yale.edu/vufind/Record/1665464)|
 
-### IIIF Websites In Japan
+#### IIIF Websites in Japan
 
 |Website|Works?|Example|
 |---|---|---|
