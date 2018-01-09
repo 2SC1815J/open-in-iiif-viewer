@@ -1,5 +1,5 @@
 /*
- * Open IIIF Manifest Link In Favorite Viewer
+ * Open IIIF Manifest Link in Favorite Viewer
  *
  * Copyright 2017 2SC1815J
  * Released under the MIT license

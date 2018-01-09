@@ -7,7 +7,7 @@ A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF view
 - Firefox
     - [Install](https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html) (signed by Mozilla)
 - Google Chrome
-    - [Open IIIF Manifest Link In Favorite Viewer (chrome web store)](https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl)
+    - [Open IIIF Manifest Link in Favorite Viewer (chrome web store)](https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl)
 
 ## Usage
 
@@ -33,7 +33,7 @@ For example:
 - Open as JSON
     - Leave the URL setting field blank.
 
-![screenshot_options](https://lh3.googleusercontent.com/SMlomYG8uHgmgRe-9d9r_21tLBk7mcrhMHHlVxI9nhCcjMqOXaB5d32rKejBv-jAWp9Ekp53Epc)
+![screenshot_options](https://lh3.googleusercontent.com/OM7yIJsqgCI6mjFcyWFkShp75mW65gv3RHc8EI9N2FpTww_U98V0Cc3Wu3L2RignsM9W0Se-3g)
 
 ## Notes
 
@@ -55,7 +55,7 @@ The list of IIIF websites that the extension works or not on is as follows.
 |Heidelberg University Library|Yes|[test](http://digi.ub.uni-heidelberg.de/diglit/ia00032100)|
 |J. Paul Getty Museum|Yes|[test](http://www.getty.edu/art/collection/objects/287186/)|
 |Qatar Digital Library|Yes|[test](https://www.qdl.qa/en/archive/81055/vdc_100023867439.0x000027)|
-|Stanford Libraries|Partial<sup>[2](#note2)</sup>|[test](https://exhibits.stanford.edu/epl/catalog/yc385kr0856), [test](https://searchworks.stanford.edu/view/vb267mw8946)|
+|Stanford Libraries|Yes/Partial<sup>[2](#note2)</sup>|[test](https://exhibits.stanford.edu/epl/catalog/yc385kr0856)/[test](https://searchworks.stanford.edu/view/vb267mw8946)|
 |University of Illinois at Urbana-Champaign Library|Yes|[test](https://digital.library.illinois.edu/items/a73d5ee0-994e-0134-2096-0050569601ca-b)|
 |Wellcome Library|Yes|[test](https://wellcomelibrary.org/item/b12029348)|
 |World Digital Library|Yes|[test](https://www.wdl.org/en/item/19477/)|

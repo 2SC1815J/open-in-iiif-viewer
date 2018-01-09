@@ -1,5 +1,5 @@
 /*
- * Open IIIF Manifest Link In Favorite Viewer
+ * Open IIIF Manifest Link in Favorite Viewer
  *
  * Copyright 2017 2SC1815J
  * Released under the MIT license
@@ -14,7 +14,7 @@
     // https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses
     // Code samples added on or after August 20, 2010 are in the public domain.
     
-    function sendMessageToTabs(function_) {
+    function sendMessageToActiveTab(message, function_) {
         browser.tabs.query({
             currentWindow: true,
             active: true
@@ -22,7 +22,7 @@
             for (let tab of tabs) {
                 browser.tabs.sendMessage(
                     tab.id,
-                    {message: 'getManifestUrl'}
+                    message
                 ).then(response => {
                     function_(response.url);
                 }).catch(onError);
@@ -46,7 +46,7 @@
     }
 
     function openNewTab() {
-        sendMessageToTabs(openInViewer);
+        sendMessageToActiveTab({message: 'getManifestUrl'}, openInViewer);
     }
     browser.browserAction.onClicked.addListener(openNewTab);
 
@@ -57,7 +57,7 @@
         browser.browserAction.setIcon({path: 'icon_off.svg'});
     }
     function updateBrowserActionButton() {
-        sendMessageToTabs(url => {
+        sendMessageToActiveTab({message: 'getManifestUrl'}, url => {
             if (url) {
                 stopTimer();
                 browser.browserAction.setTitle({title: url});
@@ -97,18 +97,15 @@
         if (info.menuItemId === 'open-link-in-iiif-viewer') {
             if (info.linkUrl) {
                 var manifestUrl = info.linkUrl;
-                if (info.linkUrl.indexOf('?') !== -1) {
-                    var re = /(?:&|\?)manifest=((https?:)?\/\/[^&]+)(?:&|$)/;
-                    var match = info.linkUrl.match(re);
+                if (manifestUrl.indexOf('?') !== -1) {
+                    var re = /(?:&|\?)manifest=(.+?)(?:&|$)/;
+                    var match = manifestUrl.match(re);
                     if (match) {
-                        manifestUrl = match[1];
-                        if (!match[2]) {
-                            manifestUrl = 'http://' + manifestUrl;
-                        }
+                        manifestUrl = decodeURIComponent(match[1]);
                     }
                 }
                 if (manifestUrl) {
-                    openInViewer(manifestUrl);
+                    sendMessageToActiveTab({message: 'getAbsoluteUrl', url: manifestUrl}, openInViewer);
                 }
             }
         }

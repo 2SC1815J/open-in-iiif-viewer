@@ -1,5 +1,5 @@
 /*
- * Open IIIF Manifest Link In Favorite Viewer
+ * Open IIIF Manifest Link in Favorite Viewer
  * 
  * Copyright 2017 2SC1815J
  * Released under the MIT license
@@ -28,15 +28,12 @@
             }
         }
         if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
-            var re = /(?:&|\?)manifest=((https?:)?\/\/[^&]+)(?:&|$)/;
+            var re = /(?:&|\?)manifest=(.+?)(?:&|$)/;
             var match;
             for (i = 0; i < linksLen; i++) {
                 match = links[i].href.match(re);
                 if (match) {
-                    manifestUrl = match[1];
-                    if (!match[2]) {
-                        manifestUrl = location.protocol + manifestUrl;
-                    }
+                    manifestUrl = decodeURIComponent(match[1]);
                     break;
                 }
             }
@@ -53,11 +50,24 @@
             if (!manifestUrl) {
                 match = location.search.match(re);
                 if (match) {
-                    manifestUrl = match[1];
+                    manifestUrl = decodeURIComponent(match[1]);
                 }
             }
         }
-        return manifestUrl;
+        return getAbsoluteUrl(manifestUrl);
+    }
+
+    function getAbsoluteUrl(url) {
+        var absoluteUrl;
+        if (url) {
+            var anchor = document.createElement('a');
+            anchor.href = url;
+            var href = anchor.href;
+            if (/^https?:\/\//.test(href)) {
+                absoluteUrl = href;
+            }
+        }
+        return absoluteUrl;
     }
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/sendMessage
@@ -66,6 +76,8 @@
     browser.runtime.onMessage.addListener(request => {
         if (request.message === 'getManifestUrl') {
             return Promise.resolve({url: getManifestUrl()});
+        } else if (request.message === 'getAbsoluteUrl') {
+            return Promise.resolve({url: getAbsoluteUrl(request.url)});
         }
     });
 })();
