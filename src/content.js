@@ -1,5 +1,6 @@
 /*
- * Open IIIF Manifest Link in Favorite Viewer
+ * Open in IIIF Viewer
+ * https://github.com/2sc1815j/open-in-iiif-viewer
  * 
  * Copyright 2017 2SC1815J
  * Released under the MIT license
@@ -39,6 +40,7 @@
             }
             if (!manifestUrl) {
                 //embedded Universal Viewer
+                //https://github.com/UniversalViewer/universalviewer/wiki/Embedding
                 var elements = document.getElementsByClassName('uv');
                 for (i = 0; i < elements.length; i++) {
                     if (elements[i].dataset.uri) {

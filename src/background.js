@@ -1,6 +1,7 @@
 /*
- * Open IIIF Manifest Link in Favorite Viewer
- *
+ * Open in IIIF Viewer
+ * https://github.com/2sc1815j/open-in-iiif-viewer
+ * 
  * Copyright 2017 2SC1815J
  * Released under the MIT license
  */
@@ -53,7 +54,7 @@
     // icons: 'Ligature Symbols' (by Kazuyuki Motoyama) under the SIL Open Font License. 
     // http://kudakurage.com/ligature_symbols/
     function browserActionButtonOff() {
-        browser.browserAction.setTitle({title: 'IIIF Manifest not found'});
+        browser.browserAction.setTitle({title: 'IIIF manifest not found'});
         browser.browserAction.setIcon({path: 'icon_off.svg'});
     }
     function updateBrowserActionButton() {

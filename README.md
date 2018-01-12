@@ -1,13 +1,15 @@
-# Open IIIF Manifest Link in Favorite Viewer
+# Open in IIIF Viewer
 
 A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.
+
+(This browser extension is formerly named “Open IIIF Manifest Link in Favorite Viewer.”)
 
 ## Install
 
 - Firefox
-    - [Install](https://2sc1815j.github.io/Open_IIIF_Manifest_Link_In_Favorite_Viewer/install.html) (signed by Mozilla)
+    - [Install](https://2sc1815j.github.io/open-in-iiif-viewer/install.html) (signed by Mozilla)
 - Google Chrome
-    - [Open IIIF Manifest Link in Favorite Viewer (chrome web store)](https://chrome.google.com/webstore/detail/open-iiif-manifest-link-i/pdkbceoglenaneaoebcagpbkocpkhajl)
+    - [Chrome Web Store](https://chrome.google.com/webstore/detail/pdkbceoglenaneaoebcagpbkocpkhajl)
 
 ## Usage
 
@@ -33,15 +35,15 @@ For example:
 - Open as JSON
     - Leave the URL setting field blank.
 
-![screenshot_options](https://lh3.googleusercontent.com/OM7yIJsqgCI6mjFcyWFkShp75mW65gv3RHc8EI9N2FpTww_U98V0Cc3Wu3L2RignsM9W0Se-3g)
+![screenshot_options](https://lh3.googleusercontent.com/hUIP21cmt6LWpJFnvKnHIzUC5Wf4ZTc9QC1vUq50Ook8XGBkUs6GYvJ6DSO5C2zMOtfjKU7lQp0)
 
 ## Notes
 
 On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.
 
-This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/Open_IIIF_Manifest_Link_In_Favorite_Viewer/issues/1).
+This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/open-in-iiif-viewer/issues/1).
 
-The list of IIIF websites that the extension works or not on is as follows.
+The list of IIIF websites on which the extension works or not is as follows.
 
 |Website|Works?|Example|
 |---|---|---|
