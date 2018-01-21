@@ -10,6 +10,7 @@
 
     function getManifestUrl() {
         var manifestUrl;
+        var canvasUrl;
         var links = document.links;
         var linksLen = links.length;
         var i;
@@ -29,12 +30,18 @@
             }
         }
         if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
+            //IIIF Drag and drop
+            //http://zimeon.github.io/iiif-dragndrop/
             var re = /(?:&|\?)manifest=(.+?)(?:&|$)/;
             var match;
             for (i = 0; i < linksLen; i++) {
                 match = links[i].href.match(re);
                 if (match) {
                     manifestUrl = decodeURIComponent(match[1]);
+                    match = links[i].href.match(/(?:&|\?)canvas=(.+?)(?:&|$)/);
+                    if (match) {
+                        canvasUrl = decodeURIComponent(match[1]);
+                    }
                     break;
                 }
             }
@@ -56,10 +63,10 @@
                 }
             }
         }
-        return getAbsoluteUrl(manifestUrl);
+        return {manifest: _getAbsoluteUrl(manifestUrl), canvas: _getAbsoluteUrl(canvasUrl)};
     }
 
-    function getAbsoluteUrl(url) {
+    function _getAbsoluteUrl(url) {
         var absoluteUrl;
         if (url) {
             var anchor = document.createElement('a');
@@ -70,6 +77,10 @@
             }
         }
         return absoluteUrl;
+    }
+
+    function getAbsoluteUrl(url) {
+        return {manifest: _getAbsoluteUrl(url.manifest), canvas: _getAbsoluteUrl(url.canvas)};
     }
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/sendMessage

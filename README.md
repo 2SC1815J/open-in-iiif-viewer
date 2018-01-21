@@ -8,6 +8,7 @@ A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF view
 
 - Firefox
     - [Install](https://2sc1815j.github.io/open-in-iiif-viewer/install.html) (signed by Mozilla)
+    - If you use Firefox ESR 52, please set `webextensions.storage.sync.enabled` to `true` in about:config.
 - Google Chrome
     - [Chrome Web Store](https://chrome.google.com/webstore/detail/pdkbceoglenaneaoebcagpbkocpkhajl)
 

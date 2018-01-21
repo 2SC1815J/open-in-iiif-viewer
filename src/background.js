@@ -36,11 +36,28 @@
     }
     
     function openInViewer(url) {
-        if (url) {
+        if (url && url.manifest) {
+            const openInBaseUrlWithoutPlaceholderDefault = 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=';
             browser.storage.sync.get({
-                openInBaseUrl: 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest='
+                openInBaseUrl: openInBaseUrlWithoutPlaceholderDefault
             }).then(options => {
-                var viewerUrl = options.openInBaseUrl + url;
+                var viewerUrl;
+                const placeholderManifest = '{manifest_URI}';
+                const placeholderCanvas = '{canvas_URI}';
+                if (options.openInBaseUrl.indexOf(placeholderManifest) !== -1) {
+                    //Placeholder format (v0.1.9-)
+                    //eg. 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest={manifest_URI}&canvas={canvas_URI}'
+                    viewerUrl = options.openInBaseUrl.replace(placeholderManifest, url.manifest);
+                    if (options.openInBaseUrl.indexOf(placeholderCanvas) !== -1) {
+                        viewerUrl = viewerUrl.replace(placeholderCanvas, url.canvas ? url.canvas : '');
+                    }
+                } else {
+                    //Append format (-v0.1.8)
+                    viewerUrl = options.openInBaseUrl + url.manifest;
+                    if (url.canvas && options.openInBaseUrl === openInBaseUrlWithoutPlaceholderDefault) {
+                        viewerUrl += '&canvas=' + url.canvas;
+                    }
+                }
                 browser.tabs.create({url: viewerUrl});
             });
         }
@@ -59,9 +76,9 @@
     }
     function updateBrowserActionButton() {
         sendMessageToActiveTab({message: 'getManifestUrl'}, url => {
-            if (url) {
+            if (url && url.manifest) {
                 stopTimer();
-                browser.browserAction.setTitle({title: url});
+                browser.browserAction.setTitle({title: url.manifest});
                 browser.browserAction.setIcon({path: 'icon.svg'});
             } else {
                 browserActionButtonOff();
@@ -98,15 +115,22 @@
         if (info.menuItemId === 'open-link-in-iiif-viewer') {
             if (info.linkUrl) {
                 var manifestUrl = info.linkUrl;
+                var canvasUrl;
                 if (manifestUrl.indexOf('?') !== -1) {
-                    var re = /(?:&|\?)manifest=(.+?)(?:&|$)/;
-                    var match = manifestUrl.match(re);
+                    var match = manifestUrl.match(/(?:&|\?)manifest=(.+?)(?:&|$)/);
                     if (match) {
                         manifestUrl = decodeURIComponent(match[1]);
+                        match = info.linkUrl.match(/(?:&|\?)canvas=(.+?)(?:&|$)/);
+                        if (match) {
+                            canvasUrl = decodeURIComponent(match[1]);
+                        }
                     }
                 }
                 if (manifestUrl) {
-                    sendMessageToActiveTab({message: 'getAbsoluteUrl', url: manifestUrl}, openInViewer);
+                    var url = {};
+                    url.manifest = manifestUrl;
+                    url.canvas = canvasUrl;
+                    sendMessageToActiveTab({message: 'getAbsoluteUrl', url: url}, openInViewer);
                 }
             }
         }

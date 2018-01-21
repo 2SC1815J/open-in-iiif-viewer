@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Open in IIIF Viewer",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.",
   "author": "2SC1815J",
   "applications": {
