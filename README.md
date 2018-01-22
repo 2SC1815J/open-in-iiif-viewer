@@ -38,6 +38,16 @@ For example:
 
 ![screenshot_options](https://lh3.googleusercontent.com/hUIP21cmt6LWpJFnvKnHIzUC5Wf4ZTc9QC1vUq50Ook8XGBkUs6GYvJ6DSO5C2zMOtfjKU7lQp0)
 
+Also, you can set a more complex pattern which contains placeholders `{manifest_URI}` and `{canvas_URI}`.
+
+For example:
+- Open in IIIF Curation Viewer
+    - `http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest={manifest_URI}&canvas={canvas_URI}&lang=en`
+- Open in Mirador
+    - `http://cdn.rawgit.com/2sc1815j/mirador-loader/70e820cc/?manifest={manifest_URI}&canvas={canvas_URI}`
+- Open in Universal Viewer
+    - `http://cdn.rawgit.com/2sc1815j/universalviewer-loader/2ef87069/?manifest={manifest_URI}&canvas={canvas_URI}`
+
 ## Notes
 
 On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.

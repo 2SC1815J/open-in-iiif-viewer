@@ -72,6 +72,25 @@
       </li>
     </ul>
     <p><img src="https://lh3.googleusercontent.com/hUIP21cmt6LWpJFnvKnHIzUC5Wf4ZTc9QC1vUq50Ook8XGBkUs6GYvJ6DSO5C2zMOtfjKU7lQp0" alt="screenshot_options" style="max-width:100%;" /></p>
+    <p>Also, you can set a more complex pattern which contains placeholders <code>{manifest_URI}</code> and <code>{canvas_URI}</code>.</p>
+    <p>For example:</p>
+    <ul>
+      <li>Open in IIIF Curation Viewer
+        <ul>
+          <li><code>http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest={manifest_URI}&amp;canvas={canvas_URI}&amp;lang=en</code></li>
+        </ul>
+      </li>
+      <li>Open in Mirador
+        <ul>
+          <li><code>http://cdn.rawgit.com/2sc1815j/mirador-loader/70e820cc/?manifest={manifest_URI}&amp;canvas={canvas_URI}</code></li>
+        </ul>
+      </li>
+      <li>Open in Universal Viewer
+        <ul>
+          <li><code>http://cdn.rawgit.com/2sc1815j/universalviewer-loader/2ef87069/?manifest={manifest_URI}&amp;canvas={canvas_URI}</code></li>
+        </ul>
+      </li>
+    </ul>
     <h2>Notes</h2>
     <p>On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.</p>
     <p>This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a <a href="https://github.com/2SC1815J/open-in-iiif-viewer/issues/1">proposal</a>.</p>
