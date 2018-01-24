@@ -44,9 +44,9 @@ For example:
 - Open in IIIF Curation Viewer
     - `http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest={manifest_URI}&canvas={canvas_URI}&lang=en`
 - Open in Mirador
-    - `http://cdn.rawgit.com/2sc1815j/mirador-loader/98e7f00d/?manifest={manifest_URI}&canvas={canvas_URI}`
+    - `http://2sc1815j.net/mirador-loader/?manifest={manifest_URI}&canvas={canvas_URI}`
 - Open in Universal Viewer
-    - `http://cdn.rawgit.com/2sc1815j/universalviewer-loader/2ef87069/?manifest={manifest_URI}&canvas={canvas_URI}`
+    - `http://2sc1815j.net/uv-loader/?manifest={manifest_URI}&canvas={canvas_URI}`
 
 ## Notes
 
