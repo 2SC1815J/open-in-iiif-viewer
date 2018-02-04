@@ -13,7 +13,7 @@
     }).then((options) => {
         const openInBaseUrlTextInput = document.getElementById('openInBaseUrl');
         openInBaseUrlTextInput.value = options.openInBaseUrl;
-        openInBaseUrlTextInput.addEventListener('change', () => {
+        openInBaseUrlTextInput.addEventListener('input', () => {
             browser.storage.sync.set({
                 openInBaseUrl: openInBaseUrlTextInput.value
             });

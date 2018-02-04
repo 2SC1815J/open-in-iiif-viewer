@@ -63,7 +63,8 @@ The list of IIIF websites on which the extension works or not is as follows.
 |Cambridge University Library|Yes|[test](https://cudl.lib.cam.ac.uk/view/MS-SPR-ECTOPLASM/1)|
 |Digital Vatican Library|Yes|[test](https://digi.vatlib.it/view/MSS_Reg.lat.1896.pt.A)|
 |e-codices|Yes|[test](http://www.e-codices.unifr.ch/en/searchresult/list/one/fmb/cb-0601a)|
-|Gallica|No|[test](http://gallica.bnf.fr/ark:/12148/btv1b525033083/f35.item) |
+|Europeana|Yes<sup>[3](#note3)</sup>|[test](http://www.europeana.eu/portal/en/record/9200365/BibliographicResource_3000149266571.html)|
+|Gallica|Yes<sup>[3](#note3)</sup>|[test](http://gallica.bnf.fr/ark:/12148/btv1b525033083/)|
 |Harvard Art Museums|Yes|[test](https://www.harvardartmuseums.org/collections/object/199194)|
 |Heidelberg University Library|Yes|[test](http://digi.ub.uni-heidelberg.de/diglit/ia00032100)|
 |J. Paul Getty Museum|Yes|[test](http://www.getty.edu/art/collection/objects/287186/)|
@@ -85,7 +86,11 @@ The list of IIIF websites on which the extension works or not is as follows.
 |Kunideco Image Wall (NDL Lab)|Yes<sup>[1](#note1)</sup>|[test](http://lab.ndl.go.jp/dhii/kunidecoview/)|
 |Collection for Study of the Japanese Language History (NINJAL)|Yes<sup>[2](#note2)</sup>|[test](http://dglb01.ninjal.ac.jp/ninjaldl/bunken.php?title=wajisyoransyo)|
 |SAT Taishōzō Image DB|Yes|[test](https://dzkimgs.l.u-tokyo.ac.jp/SATi/images.php?alang=en)|
+|Shimane University Library Digital Archive Collection|Yes|[test](http://da.lib.shimane-u.ac.jp/content/ja/2294)|
+|University of Tokyo Library System|Yes|[test](https://iiif.dl.itc.u-tokyo.ac.jp/repo/s/hyakki/)|
 
 <a id="note1">1</a>: Though the tooltip of the toolbar button is not updated in real time, clicking on the button will open the correct manifest.
 
 <a id="note2">2</a>: Use a context menu item “Open link in IIIF viewer” as needed.
+
+<a id="note3">3</a>: Ad-hoc support.

@@ -62,6 +62,28 @@
                     manifestUrl = decodeURIComponent(match[1]);
                 }
             }
+            if (!manifestUrl) {
+                //hope someday these ad-hoc codes will be unnecessary...
+                if (location.hostname === 'gallica.bnf.fr') {
+                    //ad-hoc support for Gallica
+                    //http://api.bnf.fr/api-iiif-de-r%C3%A9cup%C3%A9ration-des-images-de-gallica
+                    //http://www.bnf.fr/fr/professionnels/issn_isbn_autres_numeros/a.ark.html
+                    //http://www.cdlib.org/uc3/naan_registry.txt
+                    match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
+                    if (match) {
+                        var identifier = 'ark:/12148/' + match[1];
+                        manifestUrl = 'http://gallica.bnf.fr/iiif/' + identifier + '/manifest.json';
+                    }
+                } else if (location.hostname === 'www.europeana.eu') {
+                    //ad-hoc support for Europeana
+                    for (i = 0; i < linksLen; i++) {
+                        if (links[i].dataset.type === 'iiif') {
+                            manifestUrl = links[i].dataset.uri;
+                            break;
+                        }
+                    }
+                }
+            } 
         }
         return {manifest: _getAbsoluteUrl(manifestUrl), canvas: _getAbsoluteUrl(canvasUrl)};
     }
