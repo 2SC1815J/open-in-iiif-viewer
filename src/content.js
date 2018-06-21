@@ -64,6 +64,7 @@
             }
             if (!manifestUrl) {
                 //hope someday these ad-hoc codes will be unnecessary...
+                //ref. https://github.com/2SC1815J/open-in-iiif-viewer/issues/1
                 if (location.hostname === 'gallica.bnf.fr') {
                     //ad-hoc support for Gallica
                     //http://api.bnf.fr/api-iiif-de-r%C3%A9cup%C3%A9ration-des-images-de-gallica
@@ -71,14 +72,23 @@
                     //http://www.cdlib.org/uc3/naan_registry.txt
                     match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
                     if (match) {
+                        //20180620: Gallica switched to HTTPS
                         var identifier = 'ark:/12148/' + match[1];
-                        manifestUrl = 'http://gallica.bnf.fr/iiif/' + identifier + '/manifest.json';
+                        manifestUrl = 'https://gallica.bnf.fr/iiif/' + identifier + '/manifest.json';
                     }
                 } else if (location.hostname === 'www.europeana.eu') {
                     //ad-hoc support for Europeana
                     for (i = 0; i < linksLen; i++) {
                         if (links[i].dataset.type === 'iiif') {
-                            manifestUrl = links[i].dataset.uri;
+                            var uri = links[i].dataset.uri;
+                            if (uri) {
+                                match = uri.match(/\/info\.json$/);
+                                if (match) {
+                                    //exclude image information request URI
+                                } else {
+                                    manifestUrl = uri;
+                                }
+                            }
                             break;
                         }
                     }

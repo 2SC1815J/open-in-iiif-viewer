@@ -79,15 +79,17 @@ The list of IIIF websites on which the extension works or not is as follows.
 
 |Website|Works?|Example|
 |---|---|---|
+|National Diet Library Digital Collections (NDL)|Yes|[test](http://dl.ndl.go.jp/info:ndljp/pid/1287963)|
 |Database of Pre-modern Japanese Text (CODH)|Yes|[test](http://codh.rois.ac.jp/pmjt/book/200014778/)|
 |Database of Pre-Modern Japanese Works (NIJL)|Yes|[test](https://kotenseki.nijl.ac.jp/biblio/200010512/viewer/?ln=en)|
-|Digital Collections of Keio University Libraries|Yes|[test](http://dcollections.lib.keio.ac.jp/sites/all/libraries/uv/uv.php?archive=NRE&id=132X-200-3-1)|
-|Kyoto University Rare Materials Digital Archive|Yes|[test](https://rmda.kulib.kyoto-u.ac.jp/en/item/rb00013599)|
+|SAT Taishōzō Image DB (SAT Daizōkyō Text Database Committee)|Yes|[test](https://dzkimgs.l.u-tokyo.ac.jp/SATi/images.php?alang=en)|
 |Kunideco Image Wall (NDL Lab)|Yes<sup>[1](#note1)</sup>|[test](http://lab.ndl.go.jp/dhii/kunidecoview/)|
 |Collection for Study of the Japanese Language History (NINJAL)|Yes<sup>[2](#note2)</sup>|[test](http://dglb01.ninjal.ac.jp/ninjaldl/bunken.php?title=wajisyoransyo)|
-|SAT Taishōzō Image DB|Yes|[test](https://dzkimgs.l.u-tokyo.ac.jp/SATi/images.php?alang=en)|
-|Shimane University Library Digital Archive Collection|Yes|[test](http://da.lib.shimane-u.ac.jp/content/ja/2294)|
+|Digital Collections of Keio University Libraries|Yes|[test](http://dcollections.lib.keio.ac.jp/sites/all/libraries/uv/uv.php?archive=NRE&id=132X-200-3-1)|
+|Kyoto University Rare Materials Digital Archive|Yes|[test](https://rmda.kulib.kyoto-u.ac.jp/en/item/rb00013599)|
 |University of Tokyo Library System|Yes|[test](https://iiif.dl.itc.u-tokyo.ac.jp/repo/s/hyakki/)|
+|Shimane University Library Digital Archive Collection|Yes|[test](http://da.lib.shimane-u.ac.jp/content/ja/2294)|
+|Kyushu University Collections|Yes|[test](http://hdl.handle.net/2324/411796)|
 
 <a id="note1">1</a>: Though the tooltip of the toolbar button is not updated in real time, clicking on the button will open the correct manifest.
 
