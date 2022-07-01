@@ -9,26 +9,23 @@
   <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@2SC1815J" />
-  <meta property="og:url" content="https://2sc1815j.github.io/open-in-iiif-viewer/" />
+  <meta property="og:url" content="https://2sc1815j.net/open-in-iiif-viewer/" />
   <meta property="og:title" content="Open in IIIF Viewer" />
   <meta property="og:description" content="A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer." />
   <meta property="og:image" content="https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7" />
-  <style>
-    body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 30px 45px; }
-  </style>
 </head>
-<body>
+<body style="box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 30px 45px;">
   <article class="markdown-body">
-    <h1>Open in IIIF Viewer</h1>
+    <h1 id="open-in-iiif-viewer">Open in IIIF Viewer</h1>
     <p>A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.</p>
     <p>(This browser extension is formerly named “Open IIIF Manifest Link in Favorite Viewer.”)</p>
-    <h2>Install</h2>
-    <p>v0.1.11 (2018-06-21: For details, see the <a href="https://github.com/2SC1815J/open-in-iiif-viewer">repo</a>.)</p>
+    <h2 id="install">Install</h2>
+    <p>v0.1.12 (2022-07-01: For details, see the <a href="https://github.com/2SC1815J/open-in-iiif-viewer">repo</a>.)</p>
     <ul>
       <li>Firefox
         <ul>
           <li>
-            <a href="https://2sc1815j.github.io/open-in-iiif-viewer/install.html" rel="nofollow">Install</a> (signed by Mozilla)
+            <a href="https://2sc1815j.net/open-in-iiif-viewer/open_in_iiif_viewer.xpi" rel="nofollow">Install</a> (signed by Mozilla)
           </li>
           <li>If you use Firefox ESR 52, please set <code>webextensions.storage.sync.enabled</code> to <code>true</code> in about:config.</li>
         </ul>
@@ -41,13 +38,14 @@
         </ul>
       </li>
     </ul>
-    <h2>Usage</h2>
+    <h2 id="usage">Usage</h2>
     <p>When the web page you are browsing contains a link to a IIIF manifest, by clicking on the toolbar button of this extension, you can open the link in the IIIF viewer specified on the options page.</p>
-    <p><img src="https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7" alt="screenshot_toolbar" style="max-width:100%;" /></p>
+    <p><img src="https://lh3.googleusercontent.com/aBce0Qk59V2pNzZr_dfMwKvAze5TaqfiSQWl6oQPKRUH0MkGq4wcsEsZtjRK9POlWlBrVxt7" alt="screenshot_toolbar" /></p>
     <p>By right-clicking on a link to the IIIF manifest, a context menu item “Open link in IIIF viewer” appears, which allows you to open the link in your preferred IIIF viewer.</p>
-    <p><img src="https://lh3.googleusercontent.com/naIzec7cR6iWnClg435Efj5QnEXKhC8ZTKokMdDFi0vDOtErEaizrcPPjuf6pkvzHQKmucz3" alt="screenshot_contextmenu" style="max-width:100%;" /></p>
-    <h2>Options</h2>
-    <p>On the options page, set the URL field depending on the IIIF viewer you would like to use mainly.</p>
+    <p><img src="https://lh3.googleusercontent.com/naIzec7cR6iWnClg435Efj5QnEXKhC8ZTKokMdDFi0vDOtErEaizrcPPjuf6pkvzHQKmucz3" alt="screenshot_contextmenu" /></p>
+    <h2 id="options">Options</h2>
+    <p>On the options page, set the URL field depending on the particular IIIF viewer you want to use.</p>
+    <p>Note that IIIF viewers hosted on HTTPS servers cannot display IIIF manifests hosted on HTTP servers.</p>
     <p>For example:</p>
     <ul>
       <li>Open in IIIF Curation Viewer (default)
@@ -55,14 +53,29 @@
           <li><code>http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=</code></li>
         </ul>
       </li>
-      <li>Open in Mirador (thanks to Kiyonori Nagasaki)
+      <li>Open in Mirador 2 (thanks to Kiyonori Nagasaki)
         <ul>
           <li><code>http://candra.dhii.jp/nagasaki/mirador_if.php?manifest=</code></li>
         </ul>
       </li>
-      <li>Open in Universal Viewer
+      <li>Open in Mirador 3
+        <ul>
+          <li><code>https://projectmirador.org/embed/?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open in Universal Viewer v2
         <ul>
           <li><code>http://universalviewer.io/uv.html?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open in Universal Viewer v3
+        <ul>
+          <li><code>https://uv-v3.netlify.app/#?manifest=</code></li>
+        </ul>
+      </li>
+      <li>Open in Universal Viewer v4
+        <ul>
+          <li><code>https://uv-v4.netlify.app/#?manifest=</code></li>
         </ul>
       </li>
       <li>Open as JSON
@@ -71,8 +84,8 @@
         </ul>
       </li>
     </ul>
-    <p><img src="https://lh3.googleusercontent.com/hUIP21cmt6LWpJFnvKnHIzUC5Wf4ZTc9QC1vUq50Ook8XGBkUs6GYvJ6DSO5C2zMOtfjKU7lQp0" alt="screenshot_options" style="max-width:100%;" /></p>
-    <p>Also, you can set a more complex pattern which contains placeholders <code>{manifest_URI}</code> and <code>{canvas_URI}</code>.</p>
+    <p><img src="https://lh3.googleusercontent.com/hUIP21cmt6LWpJFnvKnHIzUC5Wf4ZTc9QC1vUq50Ook8XGBkUs6GYvJ6DSO5C2zMOtfjKU7lQp0" alt="screenshot_options" /></p>
+    <p>Also, you can set a more complex pattern containing placeholders <code>{manifest_URI}</code> and <code>{canvas_URI}</code>.</p>
     <p>For example:</p>
     <ul>
       <li>Open in IIIF Curation Viewer
@@ -91,174 +104,220 @@
         </ul>
       </li>
     </ul>
-    <h2>Notes</h2>
+    <h2 id="notes">Notes</h2>
     <p>On some web pages, the extension cannot recognize links to IIIF manifests or may misrecognize links to non-IIIF manifests.</p>
     <p>This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a <a href="https://github.com/2SC1815J/open-in-iiif-viewer/issues/1">proposal</a>.</p>
     <p>The list of IIIF websites on which the extension works or not is as follows.</p>
     <table>
-    <thead>
-    <tr>
-    <th>Website</th>
-    <th>Works?</th>
-    <th>Example</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>Biblissima</td>
-    <td>Yes</td>
-    <td><a href="http://beta.biblissima.fr/en/ark:/43093/mdata1939ea3de23cd3b1231f26ba9bdc012c34a76569">test</a></td>
-    </tr>
-    <tr>
-    <td>Bodleian Libraries</td>
-    <td>Yes<sup><a href="#note1">1</a></sup></td>
-    <td><a href="https://digital.bodleian.ox.ac.uk/inquire/Discover/Search/#/">test</a></td>
-    </tr>
-    <tr>
-    <td>Cambridge University Library</td>
-    <td>Yes</td>
-    <td><a href="https://cudl.lib.cam.ac.uk/view/MS-SPR-ECTOPLASM/1">test</a></td>
-    </tr>
-    <tr>
-    <td>Digital Vatican Library</td>
-    <td>Yes</td>
-    <td><a href="https://digi.vatlib.it/view/MSS_Reg.lat.1896.pt.A">test</a></td>
-    </tr>
-    <tr>
-    <td>e-codices</td>
-    <td>Yes</td>
-    <td><a href="http://www.e-codices.unifr.ch/en/searchresult/list/one/fmb/cb-0601a">test</a></td>
-    </tr>
-    <tr>
-    <td>Europeana</td>
-    <td>Yes<sup><a href="#note3">3</a></sup></td>
-    <td><a href="http://www.europeana.eu/portal/en/record/9200365/BibliographicResource_3000149266571.html">test</a></td>
-    </tr>
-    <tr>
-    <td>Gallica</td>
-    <td>Yes<sup><a href="#note3">3</a></sup></td>
-    <td><a href="http://gallica.bnf.fr/ark:/12148/btv1b525033083/">test</a></td>
-    </tr>
-    <tr>
-    <td>Harvard Art Museums</td>
-    <td>Yes</td>
-    <td><a href="https://www.harvardartmuseums.org/collections/object/199194">test</a></td>
-    </tr>
-    <tr>
-    <td>Heidelberg University Library</td>
-    <td>Yes</td>
-    <td><a href="http://digi.ub.uni-heidelberg.de/diglit/ia00032100">test</a></td>
-    </tr>
-    <tr>
-    <td>J. Paul Getty Museum</td>
-    <td>Yes</td>
-    <td><a href="http://www.getty.edu/art/collection/objects/287186/">test</a></td>
-    </tr>
-    <tr>
-    <td>Qatar Digital Library</td>
-    <td>Yes</td>
-    <td><a href="https://www.qdl.qa/en/archive/81055/vdc_100023867439.0x000027">test</a></td>
-    </tr>
-    <tr>
-    <td>Stanford Libraries</td>
-    <td>Yes/Partial<sup><a href="#note2">2</a></sup></td>
-    <td>
-    <a href="https://exhibits.stanford.edu/epl/catalog/yc385kr0856">test</a>/<a href="https://searchworks.stanford.edu/view/vb267mw8946">test</a>
-    </td>
-    </tr>
-    <tr>
-    <td>University of Illinois at Urbana-Champaign Library</td>
-    <td>Yes</td>
-    <td><a href="https://digital.library.illinois.edu/items/a73d5ee0-994e-0134-2096-0050569601ca-b">test</a></td>
-    </tr>
-    <tr>
-    <td>Wellcome Library</td>
-    <td>Yes</td>
-    <td><a href="https://wellcomelibrary.org/item/b12029348">test</a></td>
-    </tr>
-    <tr>
-    <td>World Digital Library</td>
-    <td>Yes</td>
-    <td><a href="https://www.wdl.org/en/item/19477/">test</a></td>
-    </tr>
-    <tr>
-    <td>Yale Center for British Art</td>
-    <td>Yes</td>
-    <td><a href="http://collections.britishart.yale.edu/vufind/Record/1665464">test</a></td>
-    </tr>
-    </tbody>
+      <thead>
+        <tr>
+          <th>Website</th>
+          <th>Works?</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biblissima</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://beta.biblissima.fr/en/ark:/43093/mdata1939ea3de23cd3b1231f26ba9bdc012c34a76569">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Bodleian Libraries</td>
+          <td><s>Yes<sup><a href="#note1">1</a></sup></s><sup><a href="#note4">4</a></sup></td>
+          <td>
+            <a href="https://digital.bodleian.ox.ac.uk/objects/acd9492e-25fa-4286-9fe6-e0cf2fc28106/">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Cambridge University Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://cudl.lib.cam.ac.uk/view/MS-SPR-ECTOPLASM/1">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Digital Vatican Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://digi.vatlib.it/view/MSS_Reg.lat.1896.pt.A">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>e-codices</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://www.e-codices.unifr.ch/en/searchresult/list/one/fmb/cb-0601a">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Europeana</td>
+          <td>Yes<sup><a href="#note3">3</a></sup></td>
+          <td>
+            <a href="http://www.europeana.eu/portal/en/record/9200365/BibliographicResource_3000149266571.html">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Gallica</td>
+          <td>Yes<sup><a href="#note3">3</a></sup></td>
+          <td>
+            <a href="http://gallica.bnf.fr/ark:/12148/btv1b525033083/">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Harvard Art Museums</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://www.harvardartmuseums.org/collections/object/199194">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Heidelberg University Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://digi.ub.uni-heidelberg.de/diglit/ia00032100">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>J. Paul Getty Museum</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://www.getty.edu/art/collection/objects/287186/">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Qatar Digital Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://www.qdl.qa/en/archive/81055/vdc_100023867439.0x000027">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Stanford Libraries</td>
+          <td>Yes/Yes</td>
+          <td>
+            <a href="https://exhibits.stanford.edu/epl/catalog/yc385kr0856">test</a>/<a href="https://searchworks.stanford.edu/view/vb267mw8946">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>UCLA Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://digital.library.ucla.edu/catalog/ark:/21198/n12k6g">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>University of Illinois at Urbana-Champaign Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://digital.library.illinois.edu/items/a73d5ee0-994e-0134-2096-0050569601ca-b">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Wellcome Library</td>
+          <td><s>Yes</s><sup><a href="#note4">4</a></sup></td>
+          <td>
+            <a href="https://wellcomelibrary.org/item/b12029348">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>World Digital Library</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://www.wdl.org/en/item/19477/">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Yale Center for British Art</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://collections.britishart.yale.edu/vufind/Record/1665464">test</a>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <h4>IIIF Websites in Japan</h4>
+    <h4 id="iiif-websites-in-japan">IIIF Websites in Japan</h4>
     <table>
-    <thead>
-    <tr>
-    <th>Website</th>
-    <th>Works?</th>
-    <th>Example</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>National Diet Library Digital Collections (NDL)</td>
-    <td>Yes</td>
-    <td><a href="http://dl.ndl.go.jp/info:ndljp/pid/1287963">test</a></td>
-    </tr>
-    <tr>
-    <td>Database of Pre-modern Japanese Text (CODH)</td>
-    <td>Yes</td>
-    <td><a href="http://codh.rois.ac.jp/pmjt/book/200014778/">test</a></td>
-    </tr>
-    <tr>
-    <td>Database of Pre-Modern Japanese Works (NIJL)</td>
-    <td>Yes</td>
-    <td><a href="https://kotenseki.nijl.ac.jp/biblio/200010512/viewer/?ln=en">test</a></td>
-    </tr>
-    <tr>
-    <td>SAT Taishōzō Image DB (SAT Daizōkyō Text Database Committee)</td>
-    <td>Yes</td>
-    <td><a href="https://dzkimgs.l.u-tokyo.ac.jp/SATi/images.php?alang=en">test</a></td>
-    </tr>
-    <tr>
-    <td>Kunideco Image Wall (NDL Lab)</td>
-    <td>Yes<sup><a href="#note1">1</a></sup></td>
-    <td><a href="http://lab.ndl.go.jp/dhii/kunidecoview/">test</a></td>
-    </tr>
-    <tr>
-    <td>Collection for Study of the Japanese Language History (NINJAL)</td>
-    <td>Yes<sup><a href="#note2">2</a></sup></td>
-    <td><a href="http://dglb01.ninjal.ac.jp/ninjaldl/bunken.php?title=wajisyoransyo">test</a></td>
-    </tr>
-    <tr>
-    <td>Digital Collections of Keio University Libraries</td>
-    <td>Yes</td>
-    <td><a href="http://dcollections.lib.keio.ac.jp/sites/all/libraries/uv/uv.php?archive=NRE&amp;id=132X-200-3-1">test</a></td>
-    </tr>
-    <tr>
-    <td>Kyoto University Rare Materials Digital Archive</td>
-    <td>Yes</td>
-    <td><a href="https://rmda.kulib.kyoto-u.ac.jp/en/item/rb00013599">test</a></td>
-    </tr>
-    <tr>
-    <td>University of Tokyo Library System</td>
-    <td>Yes</td>
-    <td><a href="https://iiif.dl.itc.u-tokyo.ac.jp/repo/s/hyakki/">test</a></td>
-    </tr>
-    <tr>
-    <td>Shimane University Library Digital Archive Collection</td>
-    <td>Yes</td>
-    <td><a href="http://da.lib.shimane-u.ac.jp/content/ja/2294">test</a></td>
-    </tr>
-    <tr>
-    <td>Kyushu University Collections</td>
-    <td>Yes</td>
-    <td><a href="http://hdl.handle.net/2324/411796">test</a></td>
-    </tr>
-    </tbody>
+      <thead>
+        <tr>
+          <th>Website</th>
+          <th>Works?</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>National Diet Library Digital Collections (NDL)</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://dl.ndl.go.jp/info:ndljp/pid/1287963">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Database of Pre-modern Japanese Text (CODH)</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://codh.rois.ac.jp/pmjt/book/200014778/">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Database of Pre-Modern Japanese Works (NIJL)</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://kotenseki.nijl.ac.jp/biblio/200010512/viewer/?ln=en">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Collection for Study of the Japanese Language History (NINJAL)</td>
+          <td>Yes<sup><a href="#note2">2</a></sup></td>
+          <td>
+            <a href="http://dglb01.ninjal.ac.jp/ninjaldl/bunken.php?title=wajisyoransyo">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Digital Collections of Keio University Libraries</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://dcollections.lib.keio.ac.jp/sites/all/libraries/uv/uv.php?archive=NRE&amp;id=132X-200-3-1">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Kyoto University Rare Materials Digital Archive</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://rmda.kulib.kyoto-u.ac.jp/en/item/rb00013599">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>University of Tokyo Library System</td>
+          <td>Yes</td>
+          <td>
+            <a href="https://iiif.dl.itc.u-tokyo.ac.jp/repo/s/hyakki/document/fbd0479b-dbb4-4eaa-95b8-f27e1c423e4b">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Shimane University Library Digital Archive Collection</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://da.lib.shimane-u.ac.jp/content/ja/2294">test</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Kyushu University Collections</td>
+          <td>Yes</td>
+          <td>
+            <a href="http://hdl.handle.net/2324/411796">test</a>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <p><a id="note1">1</a>: Though the tooltip of the toolbar button is not updated in real time, clicking on the button will open the correct manifest.</p>
+    <p><a id="note1">1</a>: Though the tooltip of the toolbar button is not updated in real-time, clicking on the button will open the correct manifest.</p>
     <p><a id="note2">2</a>: Use a context menu item “Open link in IIIF viewer” as needed.</p>
     <p><a id="note3">3</a>: Ad-hoc support.</p>
-    <h2>Author</h2>
+    <p><a id="note4">4</a>: It used to work, but as of July 2022, it no longer works due to changes on the site.</p>
+    <h2 id="author">Author</h2>
     <p><a href="https://twitter.com/2SC1815J">@2SC1815J</a></p>
   </article>
 </body>

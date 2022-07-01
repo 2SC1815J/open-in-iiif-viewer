@@ -14,6 +14,7 @@
         var links = document.links;
         var linksLen = links.length;
         var i;
+        //Find a link to something like IIIF manifest.
         //heuristic...
         for (i = 0; i < linksLen; i++) {
             if (/manifest\.json$/.test(links[i].pathname)) {
@@ -29,20 +30,52 @@
                 }
             }
         }
-        if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
-            //IIIF Drag and drop
-            //http://zimeon.github.io/iiif-dragndrop/
-            var re = /(?:&|\?)manifest=(.+?)(?:&|$)/;
-            var match;
-            for (i = 0; i < linksLen; i++) {
-                match = links[i].href.match(re);
-                if (match) {
-                    manifestUrl = decodeURIComponent(match[1]);
-                    match = links[i].href.match(/(?:&|\?)canvas=(.+?)(?:&|$)/);
-                    if (match) {
-                        canvasUrl = decodeURIComponent(match[1]);
+        function getManifestUrlFromQueryParam(url) {
+            var manifestUrl;
+            var canvasUrl;
+            if (url && url.indexOf('?') !== -1) {
+                var params = new URL(url).searchParams; //IE is not supported
+                //IIIF Drag and drop
+                //http://zimeon.github.io/iiif-dragndrop/
+                var val = params.get('manifest');
+                if (val) {
+                    manifestUrl = val;
+                    val = params.get('canvas');
+                    if (val) {
+                        canvasUrl = val;
                     }
+                } else {
+                    //IIIF Content State API
+                    //https://iiif.io/api/content-state/1.0/
+                    val = params.get('iiif-content');
+                    if (val && val.startsWith('http')) {
+                        //This criterion does not work correctly with a relative URL.
+                        manifestUrl = val;
+                    }
+                }
+            }
+            if (manifestUrl) {
+                return {manifestUrl: manifestUrl, canvasUrl: canvasUrl};
+            } else {
+                return null;
+            }
+        }
+        if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
+            //Find a IIIF manifest URL in query parameters.
+            var result;
+            for (i = 0; i < linksLen; i++) {
+                result = getManifestUrlFromQueryParam(links[i].href);
+                if (result) {
+                    manifestUrl = result.manifestUrl;
+                    canvasUrl = result.canvasUrl;
                     break;
+                }
+            }
+            if (!manifestUrl) {
+                result = getManifestUrlFromQueryParam(location.href);
+                if (result) {
+                    manifestUrl = result.manifestUrl;
+                    canvasUrl = result.canvasUrl;
                 }
             }
             if (!manifestUrl) {
@@ -57,12 +90,6 @@
                 }
             }
             if (!manifestUrl) {
-                match = location.search.match(re);
-                if (match) {
-                    manifestUrl = decodeURIComponent(match[1]);
-                }
-            }
-            if (!manifestUrl) {
                 //hope someday these ad-hoc codes will be unnecessary...
                 //ref. https://github.com/2SC1815J/open-in-iiif-viewer/issues/1
                 if (location.hostname === 'gallica.bnf.fr') {
@@ -70,7 +97,7 @@
                     //http://api.bnf.fr/api-iiif-de-r%C3%A9cup%C3%A9ration-des-images-de-gallica
                     //http://www.bnf.fr/fr/professionnels/issn_isbn_autres_numeros/a.ark.html
                     //http://www.cdlib.org/uc3/naan_registry.txt
-                    match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
+                    var match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
                     if (match) {
                         //20180620: Gallica switched to HTTPS
                         var identifier = 'ark:/12148/' + match[1];
@@ -78,22 +105,16 @@
                     }
                 } else if (location.hostname === 'www.europeana.eu') {
                     //ad-hoc support for Europeana
-                    for (i = 0; i < linksLen; i++) {
-                        if (links[i].dataset.type === 'iiif') {
-                            var uri = links[i].dataset.uri;
-                            if (uri) {
-                                match = uri.match(/\/info\.json$/);
-                                if (match) {
-                                    //exclude image information request URI
-                                } else {
-                                    manifestUrl = uri;
-                                }
-                            }
+                    for (i = 0; i < window.frames.length; i++) {
+                        var frame = window.frames[i];
+                        if (/iiif/.test(frame.location.pathname)) {
+                            var params = new URL(frame.location.href).searchParams;
+                            manifestUrl = params.get('uri');
                             break;
                         }
                     }
                 }
-            } 
+            }
         }
         return {manifest: _getAbsoluteUrl(manifestUrl), canvas: _getAbsoluteUrl(canvasUrl)};
     }

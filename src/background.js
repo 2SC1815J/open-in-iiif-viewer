@@ -9,12 +9,12 @@
     'use strict';
 
     let timeoutHandle = null;
-    
+
     // ref.
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/sendMessage
     // https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses
     // Code samples added on or after August 20, 2010 are in the public domain.
-    
+
     function sendMessageToActiveTab(message, function_) {
         browser.tabs.query({
             currentWindow: true,
@@ -30,11 +30,20 @@
             }
         }).catch(onError);
     }
-    
+
     function onError() {
         browserActionButtonOff();
     }
-    
+
+    function encodeURIComponentForQuery(str) {
+        // This function is taken from 'IIIF Curation Viewer' released under the MIT license, 
+        // Copyright 2016 Center for Open Data in the Humanities, Research Organization of Information and Systems
+        var result = encodeURIComponent(str).replace(/%(?:3A|2F|2C)/g, function(c) {
+            return decodeURIComponent(c);
+        });
+        return result;
+    }
+
     function openInViewer(url) {
         if (url && url.manifest) {
             const openInBaseUrlWithoutPlaceholderDefault = 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=';
@@ -44,18 +53,23 @@
                 var viewerUrl;
                 const placeholderManifest = '{manifest_URI}';
                 const placeholderCanvas = '{canvas_URI}';
+                var manifestUrl = encodeURIComponentForQuery(url.manifest);
+                var canvasUrl;
+                if (url.canvas) {
+                    canvasUrl = encodeURIComponentForQuery(url.canvas);
+                }
                 if (options.openInBaseUrl.indexOf(placeholderManifest) !== -1) {
                     //Placeholder format (v0.1.9-)
                     //eg. 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest={manifest_URI}&canvas={canvas_URI}'
-                    viewerUrl = options.openInBaseUrl.replace(placeholderManifest, url.manifest);
+                    viewerUrl = options.openInBaseUrl.replace(placeholderManifest, manifestUrl);
                     if (options.openInBaseUrl.indexOf(placeholderCanvas) !== -1) {
-                        viewerUrl = viewerUrl.replace(placeholderCanvas, url.canvas ? url.canvas : '');
+                        viewerUrl = viewerUrl.replace(placeholderCanvas, canvasUrl ? canvasUrl : '');
                     }
                 } else {
                     //Append format (-v0.1.8)
-                    viewerUrl = options.openInBaseUrl + url.manifest;
-                    if (url.canvas && options.openInBaseUrl === openInBaseUrlWithoutPlaceholderDefault) {
-                        viewerUrl += '&canvas=' + url.canvas;
+                    viewerUrl = options.openInBaseUrl + manifestUrl;
+                    if (canvasUrl && options.openInBaseUrl === openInBaseUrlWithoutPlaceholderDefault) {
+                        viewerUrl += '&canvas=' + canvasUrl;
                     }
                 }
                 browser.tabs.create({url: viewerUrl});
