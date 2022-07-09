@@ -9,40 +9,21 @@
     'use strict';
 
     function getManifestUrl() {
-        var manifestUrl;
-        var canvasUrl;
-        var links = document.links;
-        var linksLen = links.length;
-        var i;
-        //Find a link to something like IIIF manifest.
-        //heuristic...
-        for (i = 0; i < linksLen; i++) {
-            if (/manifest\.json$/.test(links[i].pathname)) {
-                manifestUrl = links[i].href;
-                break;
-            }
-        }
-        if (!manifestUrl) {
-            for (i = 0; i < linksLen; i++) {
-                if (/manifest$/.test(links[i].pathname)) {
-                    manifestUrl = links[i].href;
-                    break;
-                }
-            }
-        }
-        function getManifestUrlFromQueryParam(url) {
+        function getManifestUrlFromUrlPart(urlPart, href) {
+            //urlPart must not be a full URL; href must be an absolute URL
             var manifestUrl;
             var canvasUrl;
-            if (url && url.indexOf('?') !== -1) {
-                var params = new URL(url).searchParams; //IE is not supported
+            if (urlPart) {
+                var params = new URLSearchParams(urlPart);
                 //IIIF Drag and drop
                 //http://zimeon.github.io/iiif-dragndrop/
                 var val = params.get('manifest');
                 if (val) {
-                    manifestUrl = val;
+                    var baseUrl = href || location.href;
+                    manifestUrl = (new URL(val, baseUrl)).href;
                     val = params.get('canvas');
                     if (val) {
-                        canvasUrl = val;
+                        canvasUrl = (new URL(val, baseUrl)).href;
                     }
                 } else {
                     //IIIF Content State API
@@ -54,86 +35,160 @@
                     }
                 }
             }
-            if (manifestUrl) {
-                return {manifestUrl: manifestUrl, canvasUrl: canvasUrl};
-            } else {
-                return null;
-            }
+            return manifestUrl ? { manifestUrl: manifestUrl, canvasUrl: canvasUrl } : null;
         }
-        if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
-            //Find a IIIF manifest URL in query parameters.
-            var result;
+        function getManifestUrlFromQueryParam(href) {
+            if (href && href.indexOf('?') !== -1) {
+                var url = new URL(href);
+                return getManifestUrlFromUrlPart(url.search, url.href);
+            }
+            return null;
+        }
+        function getManifestUrlFromFragment(href) {
+            if (href && href.indexOf('#') !== -1) {
+                var url = new URL(href);
+                return getManifestUrlFromUrlPart(url.hash.substring(1), url.href);
+            }
+            return null;
+        }
+
+        var manifestUrl;
+        var canvasUrl;
+        try {
+            var links = document.links;
+            var linksLen = links.length;
+            var i;
+            //Find a link to something like a IIIF Manifest URL heuristically....
+            //First priority
             for (i = 0; i < linksLen; i++) {
-                result = getManifestUrlFromQueryParam(links[i].href);
-                if (result) {
-                    manifestUrl = result.manifestUrl;
-                    canvasUrl = result.canvasUrl;
+                if (/manifest\.json$/.test(links[i].pathname)) {
+                    manifestUrl = links[i].href; //href is an absolute URL
                     break;
                 }
             }
+            //Second priority
             if (!manifestUrl) {
-                result = getManifestUrlFromQueryParam(location.href);
-                if (result) {
-                    manifestUrl = result.manifestUrl;
-                    canvasUrl = result.canvasUrl;
-                }
-            }
-            if (!manifestUrl) {
-                //embedded Universal Viewer
-                //https://github.com/UniversalViewer/universalviewer/wiki/Embedding
-                var elements = document.getElementsByClassName('uv');
-                for (i = 0; i < elements.length; i++) {
-                    if (elements[i].dataset.uri) {
-                        manifestUrl = elements[i].dataset.uri;
+                for (i = 0; i < linksLen; i++) {
+                    if (/manifest$/.test(links[i].pathname)) {
+                        manifestUrl = links[i].href; //href is an absolute URL
                         break;
                     }
                 }
             }
-            if (!manifestUrl) {
-                //hope someday these ad-hoc codes will be unnecessary...
-                //ref. https://github.com/2SC1815J/open-in-iiif-viewer/issues/1
-                if (location.hostname === 'gallica.bnf.fr') {
-                    //ad-hoc support for Gallica
-                    //http://api.bnf.fr/api-iiif-de-r%C3%A9cup%C3%A9ration-des-images-de-gallica
-                    //http://www.bnf.fr/fr/professionnels/issn_isbn_autres_numeros/a.ark.html
-                    //http://www.cdlib.org/uc3/naan_registry.txt
-                    var match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
-                    if (match) {
-                        //20180620: Gallica switched to HTTPS
-                        var identifier = 'ark:/12148/' + match[1];
-                        manifestUrl = 'https://gallica.bnf.fr/iiif/' + identifier + '/manifest.json';
+            if (!manifestUrl || manifestUrl.indexOf('?') !== -1) {
+                var result;
+                //Find a IIIF Manifest URL in query parameters.
+                for (i = 0; i < linksLen; i++) {
+                    result = getManifestUrlFromQueryParam(links[i].href);
+                    if (result) {
+                        manifestUrl = result.manifestUrl;
+                        canvasUrl = result.canvasUrl;
+                        break;
                     }
-                } else if (location.hostname === 'www.europeana.eu') {
-                    //ad-hoc support for Europeana
-                    for (i = 0; i < window.frames.length; i++) {
-                        var frame = window.frames[i];
-                        if (/iiif/.test(frame.location.pathname)) {
-                            var params = new URL(frame.location.href).searchParams;
-                            manifestUrl = params.get('uri');
+                }
+                if (!manifestUrl) {
+                    result = getManifestUrlFromQueryParam(location.href);
+                    if (result) {
+                        manifestUrl = result.manifestUrl;
+                        canvasUrl = result.canvasUrl;
+                    }
+                }
+                if (!manifestUrl) {
+                    //Embedded Universal Viewer v2
+                    //https://github.com/UniversalViewer/universalviewer/wiki/Embedding
+                    var elements = document.getElementsByClassName('uv');
+                    for (i = 0; i < elements.length; i++) {
+                        if (elements[i].dataset.uri) {
+                            manifestUrl = elements[i].dataset.uri;
+                            if (manifestUrl) {
+                                manifestUrl = (new URL(manifestUrl, location.href)).href;
+                            }
                             break;
                         }
                     }
                 }
+                if (!manifestUrl) {
+                    //hope someday these ad-hoc codes will be unnecessary...
+                    //ref. https://github.com/2SC1815J/open-in-iiif-viewer/issues/1
+                    var match;
+                    if (location.hostname === 'gallica.bnf.fr') {
+                        //ad-hoc support for Gallica
+                        //http://api.bnf.fr/api-iiif-de-r%C3%A9cup%C3%A9ration-des-images-de-gallica
+                        //http://www.bnf.fr/fr/professionnels/issn_isbn_autres_numeros/a.ark.html
+                        //http://www.cdlib.org/uc3/naan_registry.txt
+                        match = location.pathname.match(/^\/ark:\/12148\/([a-z0-9]+)(?:\/|$)/);
+                        if (match) {
+                            //20180620: Gallica switched to HTTPS
+                            var identifier = 'ark:/12148/' + match[1];
+                            manifestUrl = 'https://gallica.bnf.fr/iiif/' + identifier + '/manifest.json';
+                        }
+                    } else if (location.hostname === 'www.europeana.eu') {
+                        //ad-hoc support for Europeana
+                        result = (function() {
+                            var iframes = document.getElementsByTagName('iframe');
+                            for (var i = 0; i < iframes.length; i++) {
+                                if (iframes[i].src) {
+                                    var url = new URL(iframes[i].src, location.href);
+                                    if (/iiif/.test(url.pathname)) {
+                                        var params = url.searchParams;
+                                        var manifestUrl = params.get('uri');
+                                        if (manifestUrl) {
+                                            manifestUrl = (new URL(manifestUrl, url.href)).href;
+                                            return manifestUrl;
+                                        }
+                                    }
+                                }
+                            }
+                            return null;
+                        })();
+                        if (result) {
+                            manifestUrl = result;
+                        }
+                    } else if (location.hostname === 'archive.org') {
+                        //ad-hoc support for Internet Archive
+                        //https://archive.readme.io/docs/ia-iiif-faqs
+                        //Some manifests cannot load images in a IIIF viewer.
+                        var mediatype = document.querySelector('meta[property="mediatype"]');
+                        if (mediatype) {
+                            var mediaContent = mediatype.getAttribute('content');
+                            if (mediaContent === 'texts' || mediaContent === 'image') {
+                                match = location.pathname.match(/^\/details\/([^/]+)(?:\/|$)/);
+                                if (match) {
+                                    manifestUrl = 'https://iiif.archivelab.org/iiif/' +  match[1] + '/manifest.json';
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!manifestUrl) {
+                    //Embedded Universal Viewer v4
+                    //https://codesandbox.io/s/uv-embed-example-wyus9
+                    //Find a IIIF Manifest URL from the fragment part of an iframe's src.
+                    var iframes = document.getElementsByTagName('iframe');
+                    for (i = 0; i < iframes.length; i++) {
+                        if (iframes[i].src) {
+                            var iframeHref = (new URL(iframes[i].src, location.href)).href;
+                            result = getManifestUrlFromFragment(iframeHref) || getManifestUrlFromQueryParam(iframeHref);
+                            if (result) {
+                                manifestUrl = result.manifestUrl;
+                                canvasUrl = result.canvasUrl;
+                                break;
+                            }
+                        }
+                    }
+                }
             }
-        }
-        return {manifest: _getAbsoluteUrl(manifestUrl), canvas: _getAbsoluteUrl(canvasUrl)};
-    }
-
-    function _getAbsoluteUrl(url) {
-        var absoluteUrl;
-        if (url) {
-            var anchor = document.createElement('a');
-            anchor.href = url;
-            var href = anchor.href;
-            if (/^https?:\/\//.test(href)) {
-                absoluteUrl = href;
+            //Allow only http/https.
+            if (manifestUrl && !/^https?:\/\//.test(manifestUrl)) {
+                manifestUrl = undefined;
             }
+            if (canvasUrl && !/^https?:\/\//.test(canvasUrl)) {
+                canvasUrl = undefined;
+            }
+        } catch(e) {
+            //
         }
-        return absoluteUrl;
-    }
-
-    function getAbsoluteUrl(url) {
-        return {manifest: _getAbsoluteUrl(url.manifest), canvas: _getAbsoluteUrl(url.canvas)};
+        return { manifest: manifestUrl, canvas: canvasUrl };
     }
 
     // https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/sendMessage
@@ -141,9 +196,7 @@
     // Code samples added on or after August 20, 2010 are in the public domain.
     browser.runtime.onMessage.addListener(request => {
         if (request.message === 'getManifestUrl') {
-            return Promise.resolve({url: getManifestUrl()});
-        } else if (request.message === 'getAbsoluteUrl') {
-            return Promise.resolve({url: getAbsoluteUrl(request.url)});
+            return Promise.resolve({ url: getManifestUrl() });
         }
     });
 })();

@@ -1,12 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Open in IIIF Viewer",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A Firefox/Chrome extension to open IIIF manifest link in your favorite IIIF viewer.",
   "author": "2SC1815J",
+  "homepage_url": "https://github.com/2SC1815J/open-in-iiif-viewer",
   "applications": {
     "gecko": {
-      "id": "openiiifmanifestlink@example.com"
+      "id": "openiiifmanifestlink@example.com",
+      "update_url": "https://2sc1815j.net/open-in-iiif-viewer/updates.json"
     }
   },
   "icons": {

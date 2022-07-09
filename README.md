@@ -62,7 +62,7 @@ On some web pages, the extension cannot recognize links to IIIF manifests or may
 
 This uncertainty is reduced if the IIIF community specifies (or recommends) the machine-readable patterns for a link to a IIIF manifest. See a [proposal](https://github.com/2SC1815J/open-in-iiif-viewer/issues/1).
 
-The list of IIIF websites on which the extension works or not is as follows.
+The brief list of IIIF websites on which the extension works or not is as follows.
 
 |Website|Works?|Example|
 |---|---|---|
@@ -75,6 +75,7 @@ The list of IIIF websites on which the extension works or not is as follows.
 |Gallica|Yes<sup>[3](#note3)</sup>|[test](http://gallica.bnf.fr/ark:/12148/btv1b525033083/)|
 |Harvard Art Museums|Yes|[test](https://www.harvardartmuseums.org/collections/object/199194)|
 |Heidelberg University Library|Yes|[test](http://digi.ub.uni-heidelberg.de/diglit/ia00032100)|
+|Internet Archive|Yes<sup>[3](#note3)</sup>|[test](https://archive.org/details/mma_irises_436528)|
 |J. Paul Getty Museum|Yes|[test](http://www.getty.edu/art/collection/objects/287186/)|
 |Qatar Digital Library|Yes|[test](https://www.qdl.qa/en/archive/81055/vdc_100023867439.0x000027)|
 |Stanford Libraries|Yes/Yes|[test](https://exhibits.stanford.edu/epl/catalog/yc385kr0856)/[test](https://searchworks.stanford.edu/view/vb267mw8946)|
@@ -83,6 +84,8 @@ The list of IIIF websites on which the extension works or not is as follows.
 |Wellcome Library|~~Yes~~<sup>[4](#note4)</sup>|[test](https://wellcomelibrary.org/item/b12029348)|
 |World Digital Library|Yes|[test](https://www.wdl.org/en/item/19477/)|
 |Yale Center for British Art|Yes|[test](http://collections.britishart.yale.edu/vufind/Record/1665464)|
+
+([more...](https://github.com/2SC1815J/open-in-iiif-viewer/wiki/Test-Cases))
 
 #### IIIF Websites in Japan
 
@@ -97,6 +100,8 @@ The list of IIIF websites on which the extension works or not is as follows.
 |University of Tokyo Library System|Yes|[test](https://iiif.dl.itc.u-tokyo.ac.jp/repo/s/hyakki/document/fbd0479b-dbb4-4eaa-95b8-f27e1c423e4b)|
 |Shimane University Library Digital Archive Collection|Yes|[test](http://da.lib.shimane-u.ac.jp/content/ja/2294)|
 |Kyushu University Collections|Yes|[test](http://hdl.handle.net/2324/411796)|
+
+([more...](https://github.com/2SC1815J/open-in-iiif-viewer/wiki/Test-Cases-(in-Japan)))
 
 <a id="note1">1</a>: Though the tooltip of the toolbar button is not updated in real-time, clicking on the button will open the correct manifest.
 

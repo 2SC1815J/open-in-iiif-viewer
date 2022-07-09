@@ -72,28 +72,28 @@
                         viewerUrl += '&canvas=' + canvasUrl;
                     }
                 }
-                browser.tabs.create({url: viewerUrl});
+                browser.tabs.create({ url: viewerUrl });
             });
         }
     }
 
     function openNewTab() {
-        sendMessageToActiveTab({message: 'getManifestUrl'}, openInViewer);
+        sendMessageToActiveTab({ message: 'getManifestUrl' }, openInViewer);
     }
     browser.browserAction.onClicked.addListener(openNewTab);
 
     // icons: 'Ligature Symbols' (by Kazuyuki Motoyama) under the SIL Open Font License. 
     // http://kudakurage.com/ligature_symbols/
     function browserActionButtonOff() {
-        browser.browserAction.setTitle({title: 'IIIF manifest not found'});
-        browser.browserAction.setIcon({path: 'icon_off.svg'});
+        browser.browserAction.setTitle({ title: 'IIIF manifest not found' });
+        browser.browserAction.setIcon({ path: 'icon_off.svg' });
     }
     function updateBrowserActionButton() {
-        sendMessageToActiveTab({message: 'getManifestUrl'}, url => {
+        sendMessageToActiveTab({ message: 'getManifestUrl' }, url => {
             if (url && url.manifest) {
                 stopTimer();
-                browser.browserAction.setTitle({title: url.manifest});
-                browser.browserAction.setIcon({path: 'icon.svg'});
+                browser.browserAction.setTitle({ title: url.manifest });
+                browser.browserAction.setIcon({ path: 'icon.svg' });
             } else {
                 browserActionButtonOff();
             }
@@ -105,6 +105,7 @@
             timeoutHandle = null;
         }
     }
+    browserActionButtonOff(); //initial state
     browser.tabs.onUpdated.addListener((tabId, changeInfo) => {
         if (changeInfo && changeInfo.status === 'complete') {
             //check twice
@@ -128,23 +129,33 @@
     browser.contextMenus.onClicked.addListener(info => {
         if (info.menuItemId === 'open-link-in-iiif-viewer') {
             if (info.linkUrl) {
-                var manifestUrl = info.linkUrl;
+                var manifestUrl = info.linkUrl; //linkUrl is an absolute URL
                 var canvasUrl;
                 if (manifestUrl.indexOf('?') !== -1) {
-                    var match = manifestUrl.match(/(?:&|\?)manifest=(.+?)(?:&|$)/);
-                    if (match) {
-                        manifestUrl = decodeURIComponent(match[1]);
-                        match = info.linkUrl.match(/(?:&|\?)canvas=(.+?)(?:&|$)/);
+                    try {
+                        var match = manifestUrl.match(/(?:&|\?)manifest=([^&]+?)(?:&|$)/);
                         if (match) {
-                            canvasUrl = decodeURIComponent(match[1]);
+                            var val = decodeURIComponent(match[1]);
+                            if (val) {
+                                manifestUrl = (new URL(val, info.linkUrl)).href;
+                                match = info.linkUrl.match(/(?:&|\?)canvas=([^&]+?)(?:&|$)/);
+                                if (match) {
+                                    val = decodeURIComponent(match[1]);
+                                    if (val) {
+                                        canvasUrl = (new URL(val, info.linkUrl)).href;
+                                    }
+                                }
+                            }
                         }
+                    } catch(e) {
+                        //
                     }
                 }
                 if (manifestUrl) {
                     var url = {};
                     url.manifest = manifestUrl;
                     url.canvas = canvasUrl;
-                    sendMessageToActiveTab({message: 'getAbsoluteUrl', url: url}, openInViewer);
+                    openInViewer(url);
                 }
             }
         }

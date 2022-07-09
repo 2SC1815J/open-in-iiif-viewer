@@ -1,0 +1,12 @@
+{
+	"addons": {
+		"openiiifmanifestlink@example.com": {
+			"updates": [
+				{
+					"version": "0.1.13",
+					"update_link": "https://2sc1815j.net/open-in-iiif-viewer/open_in_iiif_viewer.xpi"
+				}
+			]
+		}
+	}
+}
